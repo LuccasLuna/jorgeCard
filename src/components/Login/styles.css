@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login {
+  min-width: 30%;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  position: fixed;
+  padding: 50px;
+  background-color: white;
+}
+
+.title-login {
+  padding: 50px 0;
+}
+.title-login h1 {
+  font-size: 3rem;
+  color: #15AA73;
+  padding-bottom: 10px;
+}
+.title-login p {
+  color: #ADADAD;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.login form {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.login form > input {
+  width: 100%;
+  height: 4rem;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  outline: none;
+}
+.login form > input::placeholder {
+  font-weight: 600;
+  color: #ADADAD;
+}
+
+/* botao do form */
+.login form:nth-child(2) {
+  align-items: end;
+}
+
+.login form > button {
+  background-color: #15AA73;
+  padding: 15px 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  transition: .5s ease-in-out;
+}
+.login form > button:hover {
+  background-color: transparent;
+  border: 3px solid #15AA73;
+  color: #15AA73;
+  border-radius: 40px;
+}
+
+.title-register {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+.title-register h3{
+  font-size: 1.7rem;
+  padding-bottom: 5px;
+  color: #009673;
+}
+.title-register p{
+  padding-bottom: 25px;
+  color: #ADADAD;
+}
+
+.title-register button {
+  padding: 10px 25px;
+  color: #009673;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 7px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: .3s ease-in-out;
+}
+
+.title-register button:hover {
+  background-color: white;
+  border: 3px solid #009673;
+  border-radius: 40px;
+  
+}

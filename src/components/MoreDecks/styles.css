@@ -1,0 +1,66 @@
+.more-decks-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2, h3 {
+  color: #B9B9B9;
+}
+
+h3 {
+  color: #b9b9b9d2;
+}
+
+.moreDecks {
+  width: 50%;
+  min-height: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+@media screen {
+  
+}
+.moreDecks > input {
+  width: 100%;
+  height: 4rem;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  outline: none;
+  color: #ADADAD;
+}
+
+.moreDecks > input::placeholder {
+  color: #ADADAD;
+}
+
+
+.moreDecks > button {
+  padding: 10px 25px;
+  background-color: #15AA73;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 7px;
+  cursor: pointer;
+  border: none;
+}
+
+
+.more-decks-container p {
+  color: #15AA73;
+  font-weight: 500;
+}

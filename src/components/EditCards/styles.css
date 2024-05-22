@@ -1,0 +1,105 @@
+.edit-cards-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+h2, h3 {
+  color: #B9B9B9;
+}
+
+h3 {
+  color: #b9b9b9d2;
+}
+
+form {
+  width: 70%;
+  height: 90%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+form > button {
+
+  padding: 10px 25px;
+  background-color: #15AA73;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 7px;
+  cursor: pointer;
+  border: none;
+
+}
+
+
+.edit-cards-container p {
+  color: #15AA73;
+  font-weight: 500;
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.question-answer-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+}
+
+.question-answer-container input {
+  width: 100%;
+  text-wrap: wrap;
+  padding: 1rem 0;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  outline: none;
+  color: #8a8a8a;
+} 
+.question-answer-container input::placeholder {
+  color: #ADADAD;
+} 
+
+.add-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 30%;
+}
+.add-card input{
+  width: 100%;
+  text-wrap: wrap;
+  padding: 1rem 0;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  outline: none;
+  color: #8a8a8a;
+}
+
+.add-card input::placeholder {
+  color: #ADADAD;
+} 
+
