@@ -1,67 +1,68 @@
-
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './styles.css';
 
-import { Decks }  from '../../components/Decks';
-import EditCards   from '../../components/EditCards';
-import  MoreDecks  from '../../components/MoreDecks';
-import  Cards  from '../../components/Cards';
+import { Decks } from '../../components/Decks';
+import EditCards from '../../components/EditCards';
+import MoreDecks from '../../components/MoreDecks';
+import RemoveDeck from '../../components/RemoveDeck';
+import Cards from '../../components/Cards';
 import { Navbar } from '../../components/NavBar';
+
 import { loadDecks } from '../../utils/load-decks';
 
-export class Home extends Component {
-  state = {
-    newDeckName: '',
-    decks: []
-  }
+import { useNavigate } from 'react-router-dom';
 
-  async componentDidMount() {
-    await this.loadDecks();
-  }
-
-  loadDecks = async () => {
-    const decksLoaded = await loadDecks();
-    this.setState({ decks: decksLoaded});
-  }
-
-  handleChange = (e) => {
-    const { value } = e.target;
-    
-    this.setState({ newDeckName: value})
-    console.log(value)
-  }
+const Home = () => {
+  
+  const [decks, setDecks] = useState([]);
+  const navigate = useNavigate();
 
 
-//  ESTA FUNÇÃO DEVERA SER MUDADA POR UM FETCH PARA O BACKEND
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const { newDeckName, decks } = this.state;
-  //   const newDeck = {
-  //     id: decks.length + 1,
-  //     name: newDeckName,
-  //     cards: []
-  //   }
-  //   this.setState({ deck: [...decks, newDeck] })
-  // }
+  useEffect(() => {
+    const fetchDecks = async () => {
+      const decksLoaded = await loadDecks();
+      setDecks(decksLoaded);
+    };
 
-  render() {
-    const { decks } = this.state;
+    fetchDecks();
+  }, []);
 
-    return (
-      <>
-          <Navbar/> 
-          {/* @todo: mover para componente Decks ↓ */}
-          <Routes>
-            <Route path="/deck/:deckid" element={<Cards decks={decks} />}/>
-            <Route path="/edit-decks/:deckid" element={<EditCards decks={decks} />}/> 
-            <Route path="more-decks" element={<MoreDecks />} />
-            <Route path='*' element={<Decks decks={decks} />}/>
-          </Routes>
-        {/* </div> */}
-      </> 
-      );
-  }
-}
+  const handleDelete = async (deckId) => {
+    try {
+      const response = await fetch(`https://66526823813d78e6d6d57405.mockapi.io/decks/${deckId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Request failed: ${response.status} ${response.statusText} - ${errorText}`);
+      } else {
+        setDecks(decks.filter(deck => deck.id !== parseInt(deckId)));
+        setTimeout(() => navigate('/home'), 300);
+        
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  console.log(decks)
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/deck/:deckid" element={<Cards decks={decks} />} />
+        <Route path="/edit-decks/:deckid" element={<EditCards decks={decks} />} />
+        <Route path="/remove-deck/:deckid" element={<RemoveDeck decks={decks} handleDelete={handleDelete}/>} />
+        <Route path="more-decks" element={<MoreDecks />} />
+        <Route path="*" element={<Decks decks={decks} />} />
+      </Routes>
+    </>
+  );
+};
+
+export default Home;

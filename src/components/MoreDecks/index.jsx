@@ -24,7 +24,7 @@ const MoreDecks = () => {
     console.log(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleMoreCards = async (e) => {
     e.preventDefault();
     if(newDeckName) {
       const newDeck = {
@@ -34,7 +34,7 @@ const MoreDecks = () => {
       };
   
       try {
-        const response = await fetch('http://localhost:3000/decks', {
+        const response = await fetch(`https://66526823813d78e6d6d57405.mockapi.io/decks`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const MoreDecks = () => {
     
     <div className='main-container' style={{ backgroundImage: `url(${background})` }}>
       <div className='more-decks-container'>
-        <form onSubmit={handleSubmit} className='moreDecks'>
+        <form onSubmit={handleMoreCards} className='moreDecks'>
           <h2>Adicione novo baralho à sua coleção</h2>
           <input
             type="text"

@@ -1,6 +1,6 @@
 export const loadDecks = async () => {
   try {
-    const response = await fetch('http://localhost:3000/decks');
+    const response = await fetch('https://66526823813d78e6d6d57405.mockapi.io/decks');
 
     if (!response.ok) {
       throw new Error(`Failed to fetch decks: ${response.status} ${response.statusText}`);

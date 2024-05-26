@@ -11,9 +11,9 @@ import { useParams } from 'react-router-dom';
 import { loadDecks } from '../../utils/load-decks';
 
 const Cards = () => {
-  const [decks, setDecks] = useState([]);
+  const [deck, setDeck] = useState(null);
   const [cardIndex, setCardIndex] = useState(0);
-  const [fliped, setFliped] = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const [animated, setAnimated] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const { deckid: deckId } = useParams();
@@ -21,25 +21,27 @@ const Cards = () => {
   useEffect(() => {
     const fetchDecks = async () => {
       const decksLoaded = await loadDecks();
-      setDecks(decksLoaded);
+      const deckOfId = decksLoaded.find(d => d.id === deckId);
+      setDeck(deckOfId);
     };
     fetchDecks();
-  }, []);
-
- 
-  console.log()
-  const deck = decks[deckId -1];
+  }, [deckId]);
 
   if (!deck) {
-    return <div>Deck não encontrado!</div>;
+    return (
+      <div className="container-cards">
+        <div className='cards' >Deck não encontrado!</div>
+      </div>
+    )
   }
+
   const cards = deck.cards;
-  
+
   return (
     <div className='main-container' style={{ backgroundImage: `url(${background})` }}>
       <div className="container-cards">
         <div className='cards'>
-          {fliped ? (
+          {flipped ? (
             <div className={`card ${animated ? 'animation' : 'fliped-card'}`}>
               <div key={cards[cardIndex].id}>
                 <p>{cards[cardIndex].answer}</p>
@@ -54,8 +56,8 @@ const Cards = () => {
           )}
         </div>
         <div className='buttons-container'>
-          {!fliped ? (
-            <button className='flip-button' onClick={() => setFliped(!fliped)}>
+          {!flipped ? (
+            <button className='flip-button' onClick={() => setFlipped(!flipped)}>
               <img src={Virar} alt="flip-button" width={25} height={25}/>
             </button>
           ) : buttonClicked ? (
@@ -95,7 +97,7 @@ const Cards = () => {
       setAnimated(true);
       setTimeout(() => {
         setCardIndex(nextIndex);
-        setFliped(false);
+        setFlipped(false);
         setAnimated(false);
         setButtonClicked(false);
       }, 1000);

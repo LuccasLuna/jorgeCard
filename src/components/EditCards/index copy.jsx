@@ -51,7 +51,7 @@ const EditCards = () => {
 
     try {
       const response = await fetch(`https://66526823813d78e6d6d57405.mockapi.io/decks/${deckId}`, {
-      method: 'PUT',
+      method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

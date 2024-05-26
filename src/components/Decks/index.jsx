@@ -22,7 +22,7 @@ export class Decks extends Component {
                 {deckCards.map(deck => (
                   <Link to={`/deck/${deck.id}`} className='deck' key={deck.id} id={deck.id}>
                     {/* abre a tela para editar deck  */}
-                    <span><Link to={'/remove'}><FaTimes size={20}  className='hover-edit first-span' title='Remover baralho'/></Link></span> 
+                    <span><Link to={`/remove-deck/${deck.id}`}><FaTimes size={20}  className='hover-edit first-span' title='Remover baralho'/></Link></span> 
                     {/* abre a tela para excluir deck  */}
                     <span><Link to={`/edit-decks/${deck.id}`}><FaEdit size={20}  className='hover-edit second-span' title='Editar baralho'/></Link></span>
                     {deck.name}
